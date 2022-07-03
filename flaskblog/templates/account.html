@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block links %} 
+    <link rel="stylesheet" href="{{url_for('static',filename='account.css')}}">
+{% endblock links %}
+{% block content %}
+<main>
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-info">
+                <div class='img' style="background-image: url('{{ image_file }}');"></div>
+                <div class="profile-content">
+                    <div class="profile-username-label">Username</div>
+                    <div class="profile-username">{{ current_user.username }}</div>
+                    <div class="profile-email-label">Email</div>
+                    <div class="profile-email">{{ current_user.email }}</div>
+                </div>
+            </div>
+            <a href="{{ url_for('edit') }}" class="button">Edit</a>
+        </div>
+        <div class="clear"></div>
+    </div>
+</main>
+{% endblock content %}

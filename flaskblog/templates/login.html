@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block links %} 
+    <link rel="stylesheet" href="{{url_for('static',filename='login.css')}}">
+    <style>
+        #login{
+            color: var(--red5);
+            border-bottom: 2px solid var(--red5);
+        }
+    </style>
+{% endblock links %}
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="login-container">
+                <h1>Hello Again! Welcome back</h1>
+                <p>Don't have an account? <a href="{{ url_for('register') }}">Sign up</a></p>
+                <form action="" method="POST">
+                    <div class="col">
+                        {{ form.hidden_tag() }}
+                        {% if form.email.errors %}
+                            {{ form.email(placeholder="E-mail", class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(placeholder="E-mail") }}
+                        {% endif %}
+
+                        {% if form.password.errors %}
+                            {{ form.password(placeholder="Password", class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(placeholder="Password") }}
+                        {% endif %}
+                        {{ form.submit() }}
+                        <div id="last-field">
+                            <span class="remember">
+                                {{ form.remember() }}
+                                {{ form.remember.label() }}
+                            </span> 
+                            <a id="forgot-password" href="{{ url_for('reset_request') }}">Forgot password?</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

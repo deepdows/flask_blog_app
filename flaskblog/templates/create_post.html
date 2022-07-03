@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+{% block links %} 
+    <link rel="stylesheet" href="{{url_for('static',filename='create_post.css')}}">
+    {% if legend == 'New Post' %}
+        <style>
+            #new_post{
+                color: var(--red5);
+                border-bottom: 2px solid var(--red5);
+            }
+        </style>
+    {% endif %}
+{% endblock links %}
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="post-container">
+                <h1>{{ legend }}</h1>
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+
+                    <div class="container-title-description-image">
+                        <div class="container-title-description">
+                            {% if form.title.errors %}
+                                {{ form.title(placeholder="Title", class="is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.title.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.title(placeholder="Title") }}
+                            {% endif %}
+                            
+                            {% if form.description.errors %}
+                                {{ form.description(placeholder="Description", class="is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.description.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.description(placeholder="Description") }}
+                            {% endif %}
+                        </div>
+    
+                        <div class="postImage-upload">
+                            <div class="postImage-edit">
+                                {{ form.postImage() }}
+                                <label for="postImage"></label>
+                            </div>
+                            <div class="postImage-preview">
+                                {% if image_file %}
+                                    <div id="imagePreview" style="background-image: url('{{ image_file }}');"></div>
+                                {% else %}
+                                    <div id="imagePreview" style="background-image: url('static/img/image-icon.png');"></div>
+                                {% endif %}
+                            </div>
+                            {% if form.postImage.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.postImage.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% if form.content.errors %}
+                        {{ form.content(placeholder="Content", class="is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.content(placeholder="Content", oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"') }}
+                    {% endif %}
+
+                    {{ form.submit() }}
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
+{% block scripts %}
+        <script>
+            function content_size(){
+                var content = document.getElementById('content');
+                content.style.height = content.scrollHeight + "px";
+            }
+            window.onload = content_size;
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                        $('#imagePreview').hide();
+                        $('#imagePreview').fadeIn(650);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#postImage").change(function() {
+                readURL(this);
+            });
+        </script>
+    {% endblock scripts %}

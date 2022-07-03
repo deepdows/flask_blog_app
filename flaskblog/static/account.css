@@ -1,0 +1,104 @@
+#account{
+    color: var(--red5);
+    border-bottom: 2px solid var(--red5);
+}
+.profile-email-label, .profile-username-label{
+    font-weight: 500;
+    line-height: 140%;
+}
+.profile-email, .profile-username{
+    color: var(--gray5);
+}
+.profile-username{
+    margin-bottom: 10px;
+}
+.profile-content{
+    font-size: 24px;
+    margin-left: 20px;
+}
+.profile-container{
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+.profile-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    float: left;
+}
+.profile-container .img{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.profile-container .button{
+    padding: 7px 30px;
+    font-size: 24px;
+    background: black;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    float: right;
+}
+.profile-container .button:hover{
+    background: var(--gray5);
+}
+.clear{
+    float: none;
+}
+#account{
+    color: var(--red5);
+    border-bottom: 2px solid var(--red5);
+}
+@media only screen and (max-width: 1279px) and (min-width: 1000px){
+
+}
+@media only screen and (max-width: 999px) and (min-width: 768px){
+    .profile-container{
+        width: 740px;
+    }
+}
+@media only screen and (max-width: 767px){
+    .profile-info{
+        display: block;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .profile-container{
+        margin-top: 30px;
+        width: auto;
+        position: relative;
+    }
+    .profile-content{
+        margin-left: 0;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .profile-container .img{
+        width: 200px;
+        height: 200px;
+        margin: 40px auto 0;
+    }
+    .profile-container .button{
+        float: none;
+        position: absolute;
+        top:0;
+        right:0;
+    }
+}
+@media only screen and (max-width: 480px){
+    .profile-content{
+        margin-left: 0;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .profile-container .img{
+        width: 160px;
+        height: 160px;
+        margin: 60px auto 0;
+    }
+}

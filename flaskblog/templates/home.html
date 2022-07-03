@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block links %} 
+    <link rel="stylesheet" href="{{url_for('static',filename='home.css')}}">
+{% endblock links %}
+{% block content %}
+    <main>
+        <div class="container">
+            {% for post in posts %}
+                <div class="card">
+                    <div class="image">
+                        <a href="{{ url_for('post', post_id=post.id) }}"><img src="{{ url_for('static', filename='post_pics/' + post.image) }}" alt=""></a>
+                    </div>
+                    <div class="date">{{ post.date_posted.strftime('%h %d, %Y') }}</div>
+                    <div class="title"><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></div>
+                    <div class="description">{{ post.description }}</div>
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock content %}

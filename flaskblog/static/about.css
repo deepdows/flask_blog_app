@@ -1,0 +1,41 @@
+main p{
+    text-align: center;
+    font-size: 18px;
+    line-height: 140%;
+    margin: 0;
+}
+main span {
+    color: var(--yellow6);
+}
+main a {
+    color: var(--blue4);
+}
+main{
+    display: block;
+}
+main h1{
+    margin: 70px 0;
+    text-align: center;
+    font-weight: 500;
+    font-size: 44px;
+}
+#about{
+    color: var(--red5);
+    border-bottom: 2px solid var(--red5);
+}
+main .container{
+    margin-bottom: 50px;
+}
+@media only screen and (max-width: 767px){
+    main p{
+        font-size: 14px;
+    }
+    main h1{
+        margin-bottom: 40px;
+    }
+}
+@media only screen and (max-width: 480px){
+    main p{
+        font-size: 12px;
+    }
+}

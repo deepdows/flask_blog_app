@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+:root{
+    --gray5: #443E3E;
+    --gray4: #999999;
+    --gray2: #EEE;
+    --red5: #D62D30;
+    --yellow6: #F58020;
+    --blue4: #478ECC;
+    --blue5: #2B74B9;
+}
+body{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Ubuntu;
+    background-color: #EEEEEE;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+nav{
+    height: 36px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+#logo{
+    font-family: Roboto;
+    font-size: 36px;
+    font-weight: 600;
+}
+nav a{
+	display: block;
+	color: var(--gray5);
+	font-weight: bold;
+	text-decoration: none;
+    font-size: 14px;
+}
+nav li{
+    list-style-type: none;
+    margin-left: 45px;
+}
+.container{
+    width: 1260px;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.nav-btns ul, .nav-btns, nav .container{
+    display: flex;
+    flex-direction: row;
+}
+.nav-btns{
+    width: 100%;
+    justify-content: space-between;
+}
+.drop-btn-container{
+    display: none;
+}
+footer{
+    height: 40px;
+    width: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+footer span{
+    color: var(--gray4);
+    font-size: 14px;
+}
+.invalid-feedback{
+    margin: 2px 0 0 20px;
+    font-size: 11px;
+    color: red;
+}
+.clear{
+    float: none;
+}
+
+@media only screen and (max-width: 1280px) and (min-width: 1001px){
+    .container{
+        width: 980px;
+    }
+}
+@media only screen and (max-width: 1000px) and (min-width: 768px){
+    .container{
+        width: 748px;
+    }
+}
+@media only screen and (max-width: 767px){
+    nav{
+        height: auto;
+    }
+    main{
+        margin-top: 10px !important;
+    }
+    .nav-btns ul,
+    .nav-btns ul li{
+        display: block;
+        padding: 0;
+        margin: 0;
+    }
+    .nav-btns ul li{
+        margin: 0;
+        margin-bottom: 5px;
+    }
+    nav a{
+        font-size: 26px;
+        text-align: end;
+    }
+    nav .show{
+        display: block;
+    }
+    nav .container{
+        display: block;
+    }
+    .nav-btns{
+        display: none;
+    }
+    .drop-btn{
+        display: block;
+        float: right;
+        width: 36px;
+        height: 36px;
+        background: #ddd;
+        border-radius: 4px;
+        position: relative;
+    }
+    .drop-btn span,
+    .drop-btn span::before,
+    .drop-btn span::after{
+        position: absolute;
+        top: 50%; margin-top: -2px;
+        left: 50%; margin-left: -10px;
+        width: 20px;
+        height: 4px;
+        background: #222;
+    }
+    .drop-btn span::before,
+    .drop-btn span::after{
+        content: '';
+        display: block;
+        transition: .3s;
+    }
+    .drop-btn span::before{
+        transform: translateY(-7px);
+    }
+    .drop-btn span::after{
+        transform: translateY(7px);
+    }
+    .active-btn-menu span::before{
+        transform: rotate(45deg);
+    }
+    .active-btn-menu span::after{
+        transform: rotate(-45deg);
+    }
+    .active-btn-menu span{
+        background: none;
+    }
+    .container{
+        width: auto;
+    }
+}
+
+@media only screen and (max-width: 480px){
+    footer span{
+        font-size: 10px;
+    }
+}
+
+
+
+/* bootstrap alerts */
+.alert{position:relative;padding:1rem 1rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem}
+.alert-success{color:#0f5132;background-color:#d1e7dd;border-color:#badbcc}
+.alert-info{color:#055160;background-color:#cff4fc;border-color:#b6effb}
+.alert-warning{color:#664d03;background-color:#fff3cd;border-color:#ffecb5}
+.alert-danger{color:#842029;background-color:#f8d7da;border-color:#f5c2c7}
+
+.preloader-container{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--gray2);
+    z-index: 100;
+}
+.preloader {
+    z-index: 100;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 80px;
+    height: 80px;
+}
+.preloader div {
+    display: inline-block;
+    position: absolute;
+    left: 8px;
+    width: 16px;
+    background: #000;
+    animation: preloader 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+.preloader div:nth-child(1) {
+    left: 8px;
+    animation-delay: -0.24s;
+}
+.preloader div:nth-child(2) {
+    left: 32px;
+    animation-delay: -0.12s;
+}
+.preloader div:nth-child(3) {
+    left: 56px;
+    animation-delay: 0;
+}
+@keyframes preloader {
+    0% {
+        top: 8px;
+        height: 64px;
+    }
+    50%, 100% {
+        top: 24px;
+        height: 32px;
+    }
+}

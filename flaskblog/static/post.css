@@ -1,0 +1,173 @@
+main{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.post img{
+    width: 100%;
+}
+.post{
+    width: 100%;
+}
+.date{
+    margin-top: 25px;
+    color: var(--gray5);
+    font-size: 12px;
+    margin-bottom: 60px;
+}
+.title{
+    margin-top: 10px;
+    font-size: 40px;
+    font-weight: bold;
+}
+.content{
+    margin-top: 30px;
+    color: #292525;
+    line-height: 140%;
+}
+
+main .post{
+    width: 700px;
+    margin: 0 0 0 104px;
+}
+.btn-container{
+    margin-bottom: 10px;
+}
+.btn-container #update,
+.btn-container #delete{
+    text-decoration: none;
+    color: white;
+    padding: 4px 8px;
+}
+
+.btn-container #update{
+    background-color: var(--gray4);
+}
+.btn-container #delete{
+    background-color: var(--red5);
+}
+.comment-section h2{
+    font-family: Ubuntu;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+.comment-section p{
+    text-align: center;
+}
+.add-comment-container,
+ .comment-container{
+    border-radius: 10px;
+    background-color: white;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 16px;
+}
+.comment-section .img{
+    width: 70px;
+    height: 70px;
+    flex: 0 0 70px;
+    border-radius: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.comment-text-containter,
+.add-comment-text{
+    margin-left: 20px;
+    width: 100%;
+}
+.comment-text-containter .username{
+    font-weight: 500;
+}
+.comment-text-containter .date_posted{
+    color: var(--gray5);
+    font-size: 12px;
+}
+.comment-text-containter .row{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.comment-text-containter hr{
+    margin: 4px 0 6px;
+}
+.comment-text-containter .comment-text{
+    font-size: 14px;
+}
+.add-comment-container input[type=submit]{
+    padding: 7px 20px;
+    font-size: 14px;
+    background: black;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    margin-top: 15px;
+    border: none;
+}
+.add-comment-container input[type=text]::placeholder{
+    font-family: Ubuntu;
+    font-style: italic;
+}
+.add-comment-container input[type=submit]:hover{
+    background: var(--gray5);
+}
+.add-comment-container input[type=text]{
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--gray4);
+    padding: 5px 5px 3px;
+    outline: none;
+    box-sizing: border-box;
+}
+.add-comment-container input[type=text]:focus{
+    border-bottom: 1px solid var(--gray5);
+}
+.comment-section p a{
+    color: var(--blue4);
+}
+@media only screen and (max-width: 1279px) and (min-width: 1000px){
+
+}
+@media only screen and (max-width: 999px) and (min-width: 768px){
+    main .post{
+        width: 600px;
+        margin-left: 30px;
+    }
+    .title{
+        font-size: 34px;
+    }
+}
+@media only screen and (max-width: 768px){
+    .title{
+        font-size: 34px;
+    }
+    main .post{
+        width: auto;
+        margin: 0 10px;
+    }
+    .comment-text-containter .username{
+        font-size: 14px;
+    }
+    .comment-text-containter .comment-text{
+        font-size: 12px;
+    }
+    .comment-text-containter .date_posted{
+        font-size: 10px;
+        margin-left: auto;
+    }
+}
+@media only screen and (max-width: 480px){
+    .comment-text-containter .row{
+        flex-direction: column-reverse;
+        align-items: initial;
+    }
+}
+@media only screen and (max-width: 360px){
+    .title{
+        font-size: 30px;
+    }
+    main .post{
+        margin: 0px;
+    }
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+    {% block links %} {% endblock %}
+    {% if title %} 
+        <title>Flask Blog - {{ title }}</title>
+    {% else %}
+        <title>Flask Blog</title>
+    {% endif %}
+</head>
+<body>
+    <div class="preloader-container">
+        <div class="preloader"><div></div><div></div><div></div></div>
+    </div>
+    <nav>
+        <div class="container">
+            <span id="logo">Blog</span>
+            <a href="#" class="drop-btn">
+                <span></span>
+            </a>
+            <div class="clear"></div>
+            <div class="nav-btns">
+                <ul id="left-nav">
+                    <li><a href="{{ url_for('home') }}" id="home">Home</a></li>
+                    <li><a href="{{ url_for('about') }}" id="about">About</a></li>
+                </ul>
+                <ul id="right-nav">
+                    {% if current_user.is_authenticated %}
+                        {% if current_user.admin %}
+                            <li><a href="{{ url_for('new_post') }}" id="new_post">New Post</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('account') }}" id="account">Account</a></li>
+                        <li><a href="{{ url_for('logout') }}" id="logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('login') }}" id="login">Login</a></li>
+                        <li><a href="{{ url_for('register') }}" id="register">Register</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+    <footer>
+        <div class="container">
+            <span>&copy; <span id="year"></span> | Designed By Dmytro Holovchenko | All rights reserved</span> 
+        </div>
+    </footer>
+    <script src="{{url_for('static',filename='jquery-3.6.0.min.js')}}"></script>
+    <script>
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+        $(".drop-btn").on('click', function(e){
+            e.preventDefault(); // to cancel going to # site
+            $(this).toggleClass("active-btn-menu");
+            $(".nav-btns").toggleClass("show");
+        });
+
+        $(function(){
+            var 
+                images = document.images,
+                images_total_count = images.length;
+            
+            if(images_total_count != 0){
+                for (var i = 0; i < images_total_count; i++){
+                    new Image().src = images[i].src
+                }
+            }
+            $('.preloader-container').fadeOut();
+        });
+   </script>
+   {% block scripts %}{% endblock %}
+</body>
+</html>

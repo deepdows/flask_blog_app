@@ -1,0 +1,92 @@
+main{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.card img{
+    width: 100%;
+    border-radius: 10px;
+}
+.card{
+    width: 100%;
+}
+.date{
+    margin-top: 10px;
+    color: var(--gray5);
+    font-size: 12px;
+}
+.title{
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+}
+.title a{
+    text-decoration: none;
+    color: black;
+}
+.title a:hover{
+    color: var(--gray5);
+}
+.description{
+    margin-top: 10px;
+    color: var(--gray5);
+    font-size: 12px;
+}
+
+main .container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-columns: 282px;
+    column-gap: 30px;
+    row-gap: 50px;
+}
+#home{
+    color: var(--red5);
+    border-bottom: 2px solid var(--red5);
+}
+@media only screen and (max-width: 1000px){
+    main .container{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media only screen and (max-width: 768px){
+    .title{
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .description{
+        margin-top: 10px;
+        color: var(--gray5);
+        font-size: 10px;
+    }
+    .date{
+        margin-top: 10px;
+        color: var(--gray5);
+        font-size: 10px;
+    }
+}
+@media only screen and (max-width: 600px){
+    main .container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media only screen and (max-width: 480px){
+    main .container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .title{
+        margin-top: 10px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .description{
+        margin-top: 10px;
+        color: var(--gray5);
+        font-size: 12px;
+    }
+    .date{
+        margin-top: 10px;
+        color: var(--gray5);
+        font-size: 12px;
+    }
+}

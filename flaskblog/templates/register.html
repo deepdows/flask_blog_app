@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block links %} 
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <style>
+        #register{
+            color: var(--red5);
+            border-bottom: 2px solid var(--red5);
+        }
+    </style>
+{% endblock links %}
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="register-container">
+                <h1>Hello! Sign up to get started</h1>
+                <p>Already have an account? <a href="{{ url_for('login') }}">Sign in</a></p>
+                <form action="" method="POST">
+                    <div class="col">
+                        {{ form.hidden_tag() }}
+
+                        {% if form.username.errors %}
+                            {{ form.username(placeholder="Username", class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.username(placeholder="Username") }}
+                        {% endif %}
+
+                        {% if form.email.errors %}
+                            {{ form.email(placeholder="E-mail", class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(placeholder="E-mail") }}
+                        {% endif %}
+
+                        {% if form.password.errors %}
+                            {{ form.password(placeholder="Password", class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(placeholder="Password") }}
+                        {% endif %}
+
+                        {% if form.confirm_password.errors %}
+                            {{ form.confirm_password(placeholder="Confirm password", class="is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.confirm_password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.confirm_password(placeholder="Confirm password") }}
+                        {% endif %}
+                        
+                        {% if form.recaptcha.errors %}
+                            <div class="g-recaptcha-container">
+                                {{ form.recaptcha(class="is-invalid") }}
+                            </div>
+                            <div class="invalid-feedback">
+                                {% for error in form.recaptcha.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="g-recaptcha-container">
+                                {{ form.recaptcha() }}
+                            </div>
+                        {% endif %}
+
+                        {{ form.submit() }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+{% block links %} 
+    <link rel="stylesheet" href="{{url_for('static',filename='edit.css')}}">
+{% endblock links %}
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="edit-container">
+                <div class="inner-edit-container">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {{ form.hidden_tag() }}
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                {{ form.imageUpload() }}
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="imagePreview" style="background-image: url('{{ image_file }}');"></div>
+                            </div>
+                            {% if form.imageUpload.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.imageUpload.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="form">
+                            {% if form.username.errors %}
+                                {{ form.username(placeholder="Username", class="is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.username(placeholder="Username") }}
+                            {% endif %}
+
+                            {% if form.email.errors %}
+                                {{ form.email(placeholder="E-mail", class="is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.email(placeholder="E-mail") }}
+                            {% endif %}
+
+                            {% if form.current_password.errors %}
+                                {{ form.current_password(placeholder="Current password", class="is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.current_password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.current_password(placeholder="Current password") }}
+                            {% endif %}
+
+                            {% if form.new_password.errors %}
+                                {{ form.new_password(placeholder="New password", class="is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.new_password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.new_password(placeholder="New password") }}
+                            {% endif %}
+
+                            {% if form.confirm_new_password.errors %}
+                                {{ form.confirm_new_password(placeholder="Confirm new password", class="is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.confirm_new_password.errors %}
+                                        <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.confirm_new_password(placeholder="Confirm new password") }}
+                            {% endif %}
+
+                            {{ form.submit() }}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="{{url_for('static',filename='jquery-3.6.0.min.js')}}"></script>
+    {% block scripts %}
+        <script>
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#imagePreview').css('background-image', 'url('+e.target.result +')');
+                        $('#imagePreview').hide();
+                        $('#imagePreview').fadeIn(650);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#imageUpload").change(function() {
+                readURL(this);
+            });
+        </script>
+    {% endblock scripts %}
+{% endblock content %}

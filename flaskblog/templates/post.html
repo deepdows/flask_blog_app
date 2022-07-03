@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block links %} 
+    <link rel="stylesheet" href="{{url_for('static',filename='post.css')}}">
+{% endblock links %}
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="post">
+                {% if current_user.admin %}
+                    <div class="btn-container">
+                        <a id='update' href="{{ url_for('update_post', post_id=post.id) }}">Update</a>
+                        <a id='delete' href="{{ url_for('delete_post', post_id=post.id) }}">Delete</a>
+                    </div>
+                {% endif %}
+                <div class="image">
+                    <img src="{{ url_for('static', filename='post_pics/' + post.image) }}" alt="">
+                </div>
+                <div class="title">{{ post.title }}</div>
+                <div class="content">{{ content }}</div>
+                <div class="date">Published on {{ post.date_posted.strftime('%h %d, %Y') }}</div>
+                <div class="comment-section">
+                    <h2>Comments</h2>
+                    <hr>
+                    {% if current_user.is_authenticated %}
+                        <div class="add-comment-container">
+                            <div class="img" style="background-image: url('{{ current_image_profile }}');"></div>
+                            <div class="add-comment-text">
+                                <form action="" method="POST">
+                                    {{ form.hidden_tag() }}
+
+                                    {% if form.comment.errors %}
+                                        {{ form.comment(placeholder="Comment...", class="is-invalid") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.comment.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.comment(placeholder="Comment...") }}
+                                    {% endif %}
+                                    
+                                    {{ form.submit() }}
+                                </form>
+                            </div>
+                        </div>
+                    {% else %}
+                        <p><a href="{{ url_for('login') }}">Login</a> to comment</p>
+                    {% endif %}
+                    {% if comments %}
+                        {% for comment in comments %}
+                            <div class="comment-container">
+                                {% with image_profile = url_for('static', filename='profile_pics/' + comment.user.image) %}
+                                    <div class="img" style="background-image: url('{{ image_profile }}');"></div>
+                                {% endwith %}
+                                <div class="comment-text-containter">
+                                    <div class="row">
+                                        <div class="username">{{ comment.user.username }}</div>
+                                        <div class="date_posted">{{ comment.date_posted.strftime('%h %-d, %Y at %-I:%M %p') }}</div>
+                                    </div>
+                                    <hr>
+                                    <div class="comment-text">{{ comment.text }}</div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>No comments here yet... Be first!</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock content %}
