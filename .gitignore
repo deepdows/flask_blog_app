@@ -1,6 +1,5 @@
 __pycache__/
-env/
+venv/
 *.db
 static/post_pics/
-run.py
 .env
